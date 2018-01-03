@@ -1,0 +1,37 @@
+git reset --hard HEAD //撤销merge
+repo forall -c git checkout -b local_branch_name remount_branch_name 创建本地分支追踪远程分支
+
+git cherry-pick 5783297 合并 其他分之的commit到当前分之
+
+git rebase branch_origion 把本地当前分支的每个commit取消掉，临时保存为patch(.git/rebase)，然后当前分支更新到branch_origion,再把临时分支打上
+
+patch -p1 <  xxxx.patch
+
+git config -l | grep 'branch\.temp'  查看追踪关系
+git branch -m <old_branch_name> <new_branch_name>  本地分支重命名
+
+
+
+git log --oneline --decorate --graph --branches   //git log
+git log -p         Git会把每次提交的diff计算出来,作为一个patch显示给你看.
+git log --stat     stat比-p的输出更简单一些.
+
+
+git stash
+     把当前的改动压入一个栈.
+     git stash将会把当前目录和index中的所有改动(但不包括未track的文件)压入一个栈,然后留给你一个clean的工作状态,即处于上一次最新提交处.
+     
+     
+
+
+
+根据多个commit生成patch
+1.确保当前分支master上是干净的
+2.当前分支master上新建patch-tmp分支
+3.切换到patch-tmp分支，并回退到想要生成patch的commit，git reset --hard commitid***
+4.切换回master分支
+5.git format-patch -M patch-tmp    （每个commit生成一个patch）
+6.删除patch-tmp分支
+
+git format-patch b3e4f02..d91c185    
+git format-patch -1

@@ -1,0 +1,31 @@
+1、打包压缩：
+tar cvf /dir/file.tar /dir/file  #仅打包，不压缩
+tar zcvf /dir/file.tar.gz /dir/file  #打包后，以gzip压缩
+tar jcvf /dir/file.tar.bz2 /dir/file  #打包后，以bzip2压缩
+tar zcvpf /dir/file.tar.gz /dir/file  #打包后，以gzip压缩，并且保留权限信息
+tar -N '2007/01/15' zcvf /dir/file.tar.gz /dir/file  #打包压缩比2007/01/15新的文件
+tar --exclude /dir1/file1 zcvf file.tar.gz /dir1/* /dir2  #打包压缩dir1和dir2中所有文件，除了/dir1/下的file1文件
+其实上面的那些后缀，比如tar，tar.gz等等，我们可以省略，只要你知道以什么格式压缩的就行，不然你就没法解压了
+2、解压：
+tar xvf backup.tar
+tar zxvf /dir/file.tar.gz
+tar zxvf /dir/file.tar.Z
+tar jxvf /dir/file.tar.bz2
+tar jxvf /dir/file.tbz
+
+
+
+用命令行来执行7z的极限压缩，就是如下的命令：
+7z a -t7z newPack.7z "destPath" -r -mx=9 -m0=LZMA2 -ms=10m -mf=on -mhc=on -mmt=on 
+a    这个表示add命令，即新建一个压缩文件，该压缩文件存放在当前目录下。还有其他的命令，例如解压缩，从压缩文件中删除一个文件，等等
+-t7z    这个表示使用的压缩类型是7z。类似的还有 -tzip 等等。
+newPack.7z    新建的压缩文件的名字。
+"destPath"    这个表示把该目录下的所有的文件都执行压缩操作，添加到压缩文件中。
+-r 这个参数表示遍历所有的子目录，每个文件都执行压缩操作，添加到压缩文件中。
+-mx=9 这个参数表示压缩等级，9级是最高等级。默认等级是5。
+-m0=LZMA2 这个参数表示优先使用 LZMA2 算法。类似的，还可以设置第二优先 -m1=LZMA ，第三优先 -m2=BZip2 。
+-ms=10m 这个参数表示开启固实模式，这种模式是把压缩包中的所有文件都当成一个连续数据流来看待。通常情况下，固实压缩可增加压缩比，特别是在添加大量小文件的时候。
+    这里除了开启固实模式，还设置了以10兆作为一个数据块。
+-mf=on 这个参数表示开启可执行文件压缩过滤器。
+-mhc=on 这个参数表示对压缩包的文件头也进行压缩。
+-mmt=on 这个参数表示开启多线程，提高压缩速度

@@ -1,0 +1,13 @@
+adb root
+adb shell mount -o rw,remount /misc
+adb push s900_magicsee.dtb /misc/kernel.dtb
+adb shell sync
+adb reboot
+
+
+adb root
+adb shell mount -o rw,remount /misc
+adb push s900vr_v3s_cp.dtb /misc/kernel.dtb
+adb shell sync
+adb reboot
+
