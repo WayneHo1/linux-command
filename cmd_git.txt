@@ -35,3 +35,13 @@ git stash
 
 git format-patch b3e4f02..d91c185    
 git format-patch -1
+
+
+删除远程分支：
+repo forall -c git branch -r -d origin/n-100-v700-jinghua
+repo forall -c git push origin :n-100-v700-jinghua
+
+
+回退本地以及远程commit
+git reset --hard commit_id			//local
+git push origin HEAD --force			//remote
