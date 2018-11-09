@@ -1,1 +1,2 @@
 find . -type f -name ".gitignore"  -delete
+find . -name .git | xargs rm -rf

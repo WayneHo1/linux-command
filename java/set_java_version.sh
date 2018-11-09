@@ -37,3 +37,15 @@ elif [ ${param} == "8" -o ${param} == "1.8" ]; then
 else
 	echo -e ${RED_COLOR} "param invalid" && echo -e ${SETCOLOR_NORMAL}
 fi
+
+
+
+
+
+
+
+cmd()
+{
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+}
