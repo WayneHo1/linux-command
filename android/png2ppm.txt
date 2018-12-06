@@ -1,0 +1,4 @@
+pngtopnm logo.png > logo.pnm
+pnmquant 224 logo.pnm > logo-224.pnm
+pnmtoplainpnm logo-224.pnm > logo.ppm
+rm logo.pnm logo-224.pnm
